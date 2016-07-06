@@ -8,5 +8,8 @@ Descubra como está o tempo em qualquer cidade do Brasil
 $ git clone https://github.com/davidalves1/clima-app.git
 $ cd clima-app
 $ npm install
+$ npm link
 $ clima baixo guandu
 ```
+
+Enjoy!
