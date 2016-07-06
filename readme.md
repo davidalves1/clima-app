@@ -8,3 +8,5 @@ Descubra como está o tempo em qualquer cidade do Brasil
 $ npm install -g clima-app
 $ tempo baixo guandu
 ```
+
+Enjoy!
