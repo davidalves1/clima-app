@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "bin": {
-    "clima": "bin/clima.js"
+    "clima": "./bin/index.js"
   },
   "preferGlobal": "true",
   "scripts": {
