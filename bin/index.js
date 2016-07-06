@@ -30,8 +30,8 @@ https
 					res = JSON.parse(res).currently;            
 			    	var temperatura = (res.temperature - 32) / 1.8;
 			    	var icone = res.icon.replace(/\W/g, '');
-			    	console.log(`${eval('mensagem.' + icone)} ${busca.toUpperCase()}.` +
-			    	 	` A temperatura no momento é ${temperatura.toFixed(1)}°c`);
+			    	console.log(`${busca.toUpperCase()}: ${eval('mensagem.' + icone)}.` +
+			    	 	` A temperatura no momento é aproximadamente ${temperatura.toFixed(1)}°c`);
 			    })
 			    .catch(err => {
 			        console.log('Error!!!', err);
@@ -41,14 +41,14 @@ https
 	
 
 var mensagem = {
-	clearday: 'Dia com céu claro em', 
-	clearnight: 'Noite com céu claro em',	 
-	rain: 'No momento chove em', 
-	snow: 'No momento neva em', 
-	sleet: 'No momento neva e chove em', 
-	wind: 'No momento venta forte em', 
-	fog: 'No momento a neblima cobre', 
-	cloudy: 'Tempo encoberto em', 
-	partlycloudyday: 'Dia parcialmente nublada em',
-	partlycloudynight: 'Noite parcialmente nublada em'
+	clearday: 'Dia com céu claro', 
+	clearnight: 'Noite com céu claro',	 
+	rain: 'No momento chove', 
+	snow: 'No momento neva', 
+	sleet: 'No momento neva e chove', 
+	wind: 'No momento venta forte', 
+	fog: 'No momento a neblima cobre a cidade', 
+	cloudy: 'Tempo encoberto', 
+	partlycloudyday: 'Dia parcialmente nublado',
+	partlycloudynight: 'Noite parcialmente nublada'
 };

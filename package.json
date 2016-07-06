@@ -1,10 +1,10 @@
 {
   "name": "clima-app",
-  "version": "1.0.0",
+  "version": "0.0.3",
   "description": "",
   "main": "index.js",
   "bin": {
-    "clima": "./bin/index.js"
+    "tempo": "./bin/index.js"
   },
   "preferGlobal": "true",
   "scripts": {
@@ -12,12 +12,12 @@
   },
   "keywords": [
     "clima",
-    "tempo"
+    "tempo",
+    "Brasil"
   ],
-  "author": "David Alves <alves.david@outlook.com>",
+  "author": "David Alves de Souza <alves.david@outlook.com>",
   "license": "ISC",
   "dependencies": {
-    "commander": "^2.9.0",
     "forecast-io": "^1.0.2"
   }
 }
