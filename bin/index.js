@@ -29,9 +29,11 @@ https
 				.then(res => {
 					res = JSON.parse(res).currently;            
 			    	var temperatura = (res.temperature - 32) / 1.8;
+			    	var sensacao = (res.temperature - 32) / 1.8;
 			    	var icone = res.icon.replace(/\W/g, '');
 			    	console.log(`${busca.toUpperCase()}: ${eval('mensagem.' + icone)}.` +
-			    	 	` A temperatura no momento é aproximadamente ${temperatura.toFixed(1)}°c`);
+			    	 	` A temperatura no momento é aproximadamente ${temperatura.toFixed(1)}°c` +
+			    	 	` com sensação térmica de ${sensacao.toFixed(1)°c}`);
 			    })
 			    .catch(err => {
 			        console.log('Error!!!', err);
