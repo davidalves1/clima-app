@@ -2,7 +2,7 @@
 
 const https = require('https');
 const ForecastIO = require('forecast-io');
-const forecast = new ForecastIO('0150e5d9684da63622a19f07003b6126');
+const forecast = new ForecastIO('your-forecast-api-key');
 var querystring = require('querystring')
 
 var busca = process.argv.splice(2, process.argv.length -1).join(' ');
@@ -13,10 +13,10 @@ https
 	.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${cidade}&components=country:BR`, 
 		(response) => {
 		var body = '';
-		response.on('data', function(data) {
+		response.on('data', (data) => {
 			body += data;
 		});
-		response.on('error', function(e) {
+		response.on('error', (e) => {
 			console.log('Ops, cidade não encontrada! :(');
 		});
 		response.on('end', function(){
@@ -26,16 +26,16 @@ https
 				.latitude(location.lat)
 				.longitude(location.lng)
 				.get()
-				.then(res => {
+				.then((res) => {
 					res = JSON.parse(res).currently;            
 			    	var temperatura = (res.temperature - 32) / 1.8;
 			    	var sensacao = (res.apparentTemperature - 32) / 1.8;
 			    	var icone = res.icon.replace(/\W/g, '');
 			    	console.log(`${busca.toUpperCase()}: ${eval('mensagem.' + icone)}.` +
 			    	 	` A temperatura no momento é aproximadamente ${temperatura.toFixed(1)}°c` +
-			    	 	` com sensação térmica de ${sensacao.toFixed(1)}°c`);
+			    	 	` com sensação térmica de ${sensacao.toFixed(0)}°c`);
 			    })
-			    .catch(err => {
+			    .catch((err) => {
 			        console.log('Error!!!', err);
 				});
 		});

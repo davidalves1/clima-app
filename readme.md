@@ -2,11 +2,16 @@
 
 Descubra como está o tempo em qualquer cidade do Brasil
 
-## Como instalar e utilizar
+## Como instalar
 
 ```
 $ npm install -g clima-app
-$ tempo baixo guandu
 ```
 
-Enjoy!
+## Como utilizar
+
+```
+$ tempo nome da cidade
+```
+
+Enjoy! :)
