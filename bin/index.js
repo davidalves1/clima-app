@@ -2,7 +2,7 @@
 
 const https = require('https');
 const ForecastIO = require('forecast-io');
-const forecast = new ForecastIO('0150e5d9684da63622a19f07003b6126');
+const forecast = new ForecastIO('your-forecast-api-key');
 var querystring = require('querystring')
 
 var busca = process.argv.splice(2, process.argv.length -1).join(' ');
