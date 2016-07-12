@@ -32,8 +32,8 @@ https
 			    	var sensacao = (res.apparentTemperature - 32) / 1.8;
 			    	var icone = res.icon.replace(/\W/g, '');
 			    	console.log(`${busca.toUpperCase()}: ${eval('mensagem.' + icone)}` +
-			    	 	` A temperatura no momento é aproximadamente ${temperatura.toFixed(1)}°c` +
-			    	 	` com sensação térmica de ${sensacao.toFixed(0)}°c`);
+			    	 	` A temperatura no momento é aproximadamente ${Math.round(temperatura)}°c` +
+			    	 	` com sensação térmica de ${Math.round(sensacao)}°c`);
 			    })
 			    .catch((err) => {
 			        console.log('Ops, algo de errado aconteceu. :( \n\n' + 
