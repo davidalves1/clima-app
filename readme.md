@@ -11,7 +11,12 @@ $ npm install -g clima-app
 ## Como utilizar
 
 ```
-$ tempo nome da cidade
+$ tempo <cidade>
 ```
+
+### Exemplo: 
+
+```$ tempo baixo guandu```
+
 
 Enjoy! :)

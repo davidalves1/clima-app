@@ -12,7 +12,6 @@ const cli = meow(`
 
     Exemplo:
       $ tempo baixo guandu
-      BAIXO GUANDU: Noite com céu estrelado. A temperatura no momento é aproximadamente 19°c com sensação térmica de 19°c
 `, {});
 
 let busca = cli.input.join(' ');
@@ -62,7 +61,7 @@ const mensagem = {
 	sleet: 'Prepare seu chá, pois parece que vem chuva e frio.', 
 	wind: 'Macacos me mordam! Que vento é esse hein?!', 
 	fog: 'Hoje a neblina parece ter vindo com tudo.', 
-	cloudy: 'Tempo encoberto. :|', 
+	cloudy: 'Tempo encoberto.', 
 	partlycloudyday: 'Dia parcialmente nublado',
 	partlycloudynight: 'Noite parcialmente nublada'
 };
