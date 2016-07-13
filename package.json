@@ -18,6 +18,7 @@
   "author": "David Alves de Souza <alves.david@outlook.com>",
   "license": "ISC",
   "dependencies": {
-    "forecast-io": "^1.0.2"
+    "forecast-io": "^1.0.2",
+    "meow": "^3.7.0"
   }
 }
