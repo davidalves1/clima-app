@@ -4,7 +4,8 @@
 
 const https = require('https');
 const ForecastIO = require('forecast-io');
-const forecast = new ForecastIO('5faf75b61a3d8e5d95f2857f29b7a0b1');
+// Faça o cadastro em https://developer.forecast.io/ para obtera a chave da api e substitua abaixo.
+const forecast = new ForecastIO('your-forecast-api-key');
 const querystring = require('querystring');
 const meow = require('meow');
 
