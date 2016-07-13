@@ -1,8 +1,10 @@
 #! /usr/bin/env node
 
+'use strict';
+
 const https = require('https');
 const ForecastIO = require('forecast-io');
-const forecast = new ForecastIO('your-forecast-api-key');
+const forecast = new ForecastIO('5faf75b61a3d8e5d95f2857f29b7a0b1');
 const querystring = require('querystring');
 const meow = require('meow');
 
@@ -47,7 +49,8 @@ https
 			    .catch((err) => {
 			        console.log('Ops, algo de errado aconteceu. :( \n\n' + 
 			        	`Error:  ${err.split('\n')[1]}` +
-			        	'\n\nPor favor, informe o erro acima em: https://github.com/davidalves1/clima-app/issues');
+			        	'\n\nPor favor, informe o erro acima em: https://github.com/davidalves1/clima-app/issues' + 
+			        	'\nObrigado! :)');
 				});
 		});
 	});

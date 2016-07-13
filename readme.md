@@ -18,5 +18,4 @@ $ tempo <cidade>
 
 ```$ tempo baixo guandu```
 
-
 Enjoy! :)
