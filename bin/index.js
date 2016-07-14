@@ -14,10 +14,14 @@ const cli = meow(`
       $ tempo <cidade>
 
     Exemplo:
-      $ tempo baixo guandu
+      $ tempo São Paulo
 `, {});
 
 let busca = cli.input.join(' ');
+if (busca.length === 0) {
+	console.log('Ops, você digitou uma cidade inválida!');
+	return;
+}
 
 let cidade = querystring.stringify({ address: busca })
 
