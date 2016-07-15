@@ -15,28 +15,42 @@ const cli = meow(`
 
     Exemplo:
       $ tempo São Paulo
+
 `, {});
 
 let busca = cli.input.join(' ');
+
 if (busca.length === 0) {
 	console.log('Ops, você digitou uma cidade inválida!');
 	return;
 }
 
-let cidade = querystring.stringify({ address: busca })
+let cidade = querystring.stringify({ address: busca });
 
 https
-	.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${cidade}&components=country:BR`, 
+	.get(`https://maps.googleapis.com/maps/api/geocode/json?${cidade}&components=country:BR`, 
 		(response) => {
 		let body = '';
 		response.on('data', (data) => {
 			body += data;
 		});
 		response.on('error', (e) => {
-			console.log('Ops, cidade não encontrada! :(');
+			console.log('\nOps, cidade não encontrada! :(\n');
 		});
 		response.on('end', () => {
-			 let location = JSON.parse(body).results[0].geometry.location;
+
+			let results = JSON.parse(body).results[0];
+
+			if (results.types.indexOf('locality') === -1) {
+				console.log('\nOps, você digitou uma cidade inválida!\n');
+				return;
+			}
+
+			let nome_cidade = results.formatted_address.split(', ')[0];
+
+			let estado = results.address_components.reverse()[1].short_name;
+
+			let location = results.geometry.location;
       		
       		forecast
 				.latitude(location.lat)
@@ -46,18 +60,17 @@ https
 					res = JSON.parse(res).currently;            
 			    	let temperatura = (res.temperature - 32) / 1.8;
 			    	let icone = res.icon.replace(/\W/g, '');
-			    	console.log(`${busca.toUpperCase()}: ${eval('mensagem.' + icone)}` +
-			    	 	` A temperatura no momento é aproximadamente ${Math.round(temperatura)}°c.`);
+			    	console.log(`\n${nome_cidade.toUpperCase()} - ${estado}: ${eval('mensagem.' + icone)}` +
+			    	 	` A temperatura no momento está em torno de ${Math.round(temperatura)}°c.\n`);
 			    })
 			    .catch((err) => {
-			        console.log('Ops, algo de errado aconteceu. :( \n\n' + 
+			        console.log('\nOps, algo de errado aconteceu. :( \n\n' + 
 			        	`Error:  ${err.split('\n')[1]}` +
 			        	'\n\nPor favor, informe o erro acima em: https://github.com/davidalves1/clima-app/issues' + 
-			        	'\nObrigado! :)');
+			        	'\nObrigado! :)\n');
 				});
 		});
 	});
-	
 
 const mensagem = {
 	clearday: 'Dia com céu claro.', 
