@@ -1,6 +1,6 @@
 # Clima-App
 
-Descubra como está o tempo em qualquer cidade do Brasil.
+:sunny: Descubra como está o tempo em qualquer cidade do Brasil.
 
 ## Instalação
 
