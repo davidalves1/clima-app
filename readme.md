@@ -1,4 +1,5 @@
 # Clima-App
+[![https://nodei.co/npm/clima-app.png?downloads=true&downloadRank=true&stars=true](https://nodei.co/npm/clima-app.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/clima-app)
 
 :sunny: Descubra como está o tempo em qualquer cidade do Brasil.
 
