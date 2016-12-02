@@ -1,6 +1,6 @@
 {
   "name": "clima-app",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "Descubra como está o tempo em qualquer cidade do Brasil",
   "repository": "https://github.com/davidalves1/clima-app",
   "main": "index.js",
@@ -22,7 +22,6 @@
     "url": "https://github.com/davidalves1/clima-app/issues"
   },
   "dependencies": {
-    "forecast-io": "^1.0.2",
     "meow": "^3.7.0"
   }
 }

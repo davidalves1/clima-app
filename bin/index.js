@@ -3,9 +3,8 @@
 'use strict';
 
 const https = require('https');
-const ForecastIO = require('forecast-io');
 // Faça o cadastro em https://developer.forecast.io/ para obtera a chave da api e substitua abaixo.
-const forecast = new ForecastIO('forecast-api-key');
+const api_key = 'forecast-api-key';
 const querystring = require('querystring');
 const meow = require('meow');
 
@@ -51,24 +50,10 @@ https
 			let estado = results.address_components.reverse()[1].short_name;
 
 			let location = results.geometry.location;
-      		
-      		forecast
-				.latitude(location.lat)
-				.longitude(location.lng)
-				.get()
-				.then((res) => {
-					res = JSON.parse(res).currently;            
-			    	let temperatura = (res.temperature - 32) / 1.8;
-			    	let icone = res.icon.replace(/\W/g, '');
-			    	console.log(`\n${nome_cidade.toUpperCase()} - ${estado}: ${eval('mensagem.' + icone)}` +
-			    	 	` A temperatura no momento está em torno de ${Math.round(temperatura)}°c.\n`);
-			    })
-			    .catch((err) => {
-			        console.log('\nOps, algo de errado aconteceu. :( \n\n' + 
-			        	`Error:  ${err.split('\n')[1]}` +
-			        	'\n\nPor favor, informe o erro acima em: https://github.com/davidalves1/clima-app/issues' + 
-			        	'\nObrigado! :)\n');
-				});
+
+			forecast(location.lat, location.lng, nome_cidade, estado)
+				.then(handleSuccess)
+				.catch(handleError);
 		});
 	});
 
@@ -84,3 +69,40 @@ const mensagem = {
 	partlycloudyday: 'Dia parcialmente nublado.',
 	partlycloudynight: 'Noite parcialmente nublada.'
 };
+
+function forecast(lat, lng, city, uf) {
+	return new Promise((resolve, reject) => {
+		https
+			.get(`https://api.darksky.net/forecast/${api_key}/${lat},${lng}`, (response) => {
+				let body = '';
+				response.on('data', (data) => {
+					body += data;
+				});
+				response.on('error', (err) => {
+					reject('\nOps, algo de errado aconteceu. :( \n\n' + 
+				        	`Error:  ${err.split('\n')[1]}` +
+				        	'\n\nPor favor, informe o erro acima em: https://github.com/davidalves1/clima-app/issues' + 
+				        	'\nObrigado! :)\n');
+				});
+				response.on('end', () => {
+					let res = JSON.parse(body).currently;         
+
+					resolve({
+						cidade: city,
+						estado: uf,
+						temperatura: (res.temperature - 32) / 1.8,
+						icone: res.icon.replace(/\W/g, '')
+					});
+				});
+		});
+	});
+}
+
+function handleSuccess(data) {
+	console.log(`\n${data.cidade.toUpperCase()} - ${data.estado}: ${eval('mensagem.' + data.icone)}` +
+		    	 		` A temperatura no momento está em torno de ${Math.round(data.temperatura)}°c.\n`);
+}
+
+function handleError(err) {
+	console.log(err);
+}
