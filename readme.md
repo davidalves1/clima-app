@@ -22,4 +22,4 @@ Crie uma [issue](https://github.com/davidalves1/clima-app/issues/new) ou envie u
 
 ### Licença
 
-ISC © David Alves de Souza
+MIT © David Alves de Souza

@@ -1,13 +1,13 @@
 {
   "name": "clima-app",
-  "version": "1.1.0",
+  "version": "1.1.4",
   "description": "Descubra como está o tempo em qualquer cidade do Brasil",
   "repository": "https://github.com/davidalves1/clima-app",
   "main": "index.js",
   "bin": {
     "tempo": "./bin/index.js"
   },
-  "preferGlobal": "true",
+  "preferGlobal": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,7 +17,7 @@
     "Brasil"
   ],
   "author": "David Alves de Souza <alves.david@outlook.com>",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/davidalves1/clima-app/issues"
   },
