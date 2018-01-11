@@ -50,6 +50,11 @@ https
 
 			const nome_cidade = results.formatted_address.split(', ')[0];
 
+            if (nome_cidade == 'Brazil') {
+                console.log('\nOps, você digitou uma cidade inválida!\n');
+                return;
+            }
+
 			// let estado = results.address_components.reverse()[1].short_name;
 			const estado = results.address_components.filter(item => {
         return estados.includes(item.short_name);
