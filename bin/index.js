@@ -4,7 +4,8 @@
 
 const https = require('https');
 // Faça o cadastro em https://developer.forecast.io/ para obtera a chave da api e substitua abaixo.
-const api_key = 'forecast-api-key';
+const forecastApiKey = 'forecast-api-key';
+const gMapsApiKey = 'gmaps-api-key';
 const querystring = require('querystring');
 const meow = require('meow');
 const estados = require('./estados');
@@ -28,7 +29,7 @@ if (busca.length === 0) {
 const cidade = querystring.stringify({ address: busca });
 
 https
-	.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${cidade}&components=country:BR`, (response) => {
+	.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${cidade}&components=country:BR&key=${gMapsApiKey}`, (response) => {
 		let body = '';
 
 		response.on('data', (data) => {
@@ -40,7 +41,6 @@ https
 		});
 
 		response.on('end', () => {
-
 			const results = JSON.parse(body).results[0];
 
       if (!results.types.includes('locality') && !results.types.includes('political')) {
@@ -49,11 +49,10 @@ https
 			}
 
 			const nome_cidade = results.formatted_address.split(', ')[0];
-
-            if (nome_cidade == 'Brazil') {
-                console.log('\nOps, você digitou uma cidade inválida!\n');
-                return;
-            }
+        if (nome_cidade == 'Brazil') {
+          console.log('\nOps, você digitou uma cidade inválida!\n');
+          return;
+        }
 
 			// let estado = results.address_components.reverse()[1].short_name;
 			const estado = results.address_components.filter(item => {
@@ -91,16 +90,18 @@ const mensagem = {
 function forecast(lat, lng, city, uf) {
 	return new Promise((resolve, reject) => {
 		https
-			.get(`https://api.darksky.net/forecast/${api_key}/${lat},${lng}`, (response) => {
-				let body = '';
+			.get(`https://api.darksky.net/forecast/${forecastApiKey}/${lat},${lng}`, (response) => {
+        let body = '';
+
 				response.on('data', (data) => {
 					body += data;
-				});
+        });
+
 				response.on('error', (err) => {
 					reject('\nOps, algo de errado aconteceu. :( \n\n' +
-				        	`Error:  ${err.split('\n')[1]}` +
-				        	'\n\nPor favor, informe o erro acima em: https://github.com/davidalves1/clima-app/issues' +
-				        	'\nObrigado! :)\n');
+            `Error:  ${err.split('\n')[1]}` +
+            '\n\nPor favor, informe o erro acima em: https://github.com/davidalves1/clima-app/issues' +
+            '\nObrigado! :)\n');
 				});
 				response.on('end', () => {
 					let res = JSON.parse(body).currently;

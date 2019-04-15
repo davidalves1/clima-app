@@ -1,5 +1,6 @@
 ﻿
 # Created by https://www.gitignore.io/api/linux,node,osx
+.env
 
 ### Linux ###
 *~
