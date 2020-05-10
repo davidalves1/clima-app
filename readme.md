@@ -16,6 +16,11 @@ $ tempo <cidade>
 $ tempo São Paulo
 ```
 
+## Roadmap
+
+- Refatorar todo o código para usar Javascript moderno com Async e Await
+- Ter versão do Readme em inglês
+
 ### Contribuições
 
 Crie uma [issue](https://github.com/davidalves1/clima-app/issues/new) ou envie um **pull request** e nos ajude a melhorar o projeto, toda contribuição é muito bem vinda!
